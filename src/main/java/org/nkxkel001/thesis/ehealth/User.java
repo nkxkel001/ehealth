@@ -19,13 +19,13 @@ public class User {
 	
 	public User(){
 		
-		this.id = 0;
+		/*this.id = 0;
 		this.firstName = "";
 		this.userName = "";
 		this.lastName = "";
 		this.dateRegistered = "";
 		this.doctorID = 0;
-		this.emergencyContact = "";
+		this.emergencyContact = "";*/
 		
 		
 	}

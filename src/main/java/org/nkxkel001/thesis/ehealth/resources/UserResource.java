@@ -32,14 +32,15 @@ public class UserResource {
 						
 	}
 	
+	
 	//public access ? called with details of new user for sign up from app
 	//called from google after authentication
 	//return user id to be used in url to post data while logged in
 	@POST
-	@Path("/user")
 	@Consumes (MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public User addUser(User newUser){
+		
 		
 		
 		

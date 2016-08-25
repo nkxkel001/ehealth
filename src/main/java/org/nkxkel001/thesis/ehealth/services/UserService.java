@@ -41,6 +41,23 @@ public class UserService {
 	
 	}
 	
+	public User createUser(User newuser){
+		//authenticate user
+		//check if user already exists
+		//allow login maybe or start receiving data
+		
+		return null;
+	}
+	
+	
+	public boolean userExists(User user){
+		String sql ="SELECT products.id FROM products WHERE products.id = ?";
+		
+		
+		
+		return true;
+	}
+	
 	
 	
 	

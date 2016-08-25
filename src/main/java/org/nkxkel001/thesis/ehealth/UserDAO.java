@@ -102,6 +102,19 @@ public class UserDAO {
 		
 	}
 	
+	public User GetUser(String username){
+		String sql ="SELECT * FROM UserTable WHERE UserName = '"+username +"'";
+		ArrayList<HashMap <String, String>> results = databaseQuery.SelectAll(sql);
+		User retrievedUser = null;
+		if (results.size()!=0){
+			
+			retrievedUser = CreateUser(results.get(0));
+		}
+		
+		return retrievedUser;
+			
+	}
+	
 	
 	
 	
