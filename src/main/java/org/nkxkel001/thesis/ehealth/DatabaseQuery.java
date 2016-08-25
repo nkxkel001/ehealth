@@ -2,6 +2,7 @@ package org.nkxkel001.thesis.ehealth;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -35,6 +36,7 @@ public class DatabaseQuery {
 		   
 		   try{
 		      //STEP 4: Execute a query
+			   
 		      System.out.println("Creating statement...");
 		      stmt = connect.createStatement();
 		      String sql;
@@ -75,7 +77,7 @@ public class DatabaseQuery {
 		   }catch(Exception e){
 		      //Handle errors for Class.forName
 		      e.printStackTrace();
-		   }finally{
+		   }/*finally{
 		      //finally block used to close resources
 		      try{
 		         if(stmt!=null)
@@ -88,7 +90,7 @@ public class DatabaseQuery {
 		      }catch(SQLException se){
 		         se.printStackTrace();
 		      }//end finally try
-		   }//end try
+		   }*///end try
 		   System.out.println("Goodbye!");
 		   return queryResults;
 		}//end main
@@ -112,7 +114,7 @@ public class DatabaseQuery {
 		      while(rs.next()){
 		         //Retrieve by column name
 		    	  HashMap <String,String> resultSet = new HashMap <String,String>();
-		    	  for(int i = 1; i<numberOfColumns; i++){
+		    	  for(int i = 1; i<=numberOfColumns; i++){
 		    		  
 		    		  resultSet.put(rsmd.getColumnName(i), rs.getString(rsmd.getColumnName(i)));
 		    		  
@@ -146,18 +148,62 @@ public class DatabaseQuery {
 		            stmt.close();
 		      }catch(SQLException se2){
 		      }// nothing we can do
-		      try{
+		      /*try{
 		         if(connect!=null)
 		            connect.close();
 		      }catch(SQLException se){
 		         se.printStackTrace();
-		      }//end finally try
+		      }*///end finally try
 		   }//end try
 		   System.out.println("Goodbye!");
 		   return queryResults;
 		}//end main
 
 
+	 public int Insert (String sql) {
+		   
+		   Statement stmt = null;
+		   int generatedKey = 0;     
+		   try{
+			   
+			   PreparedStatement ps = connect.prepareStatement(sql,
+				        Statement.RETURN_GENERATED_KEYS);
+				 
+				ps.execute();
+				 
+				ResultSet rs = ps.getGeneratedKeys();
+				
+				if (rs.next()) {
+				    generatedKey = rs.getInt(1);
+				    
+				}
+				 
+				System.out.println("Inserted record's ID: " + generatedKey);
+	
+		      rs.close();
+		      }catch(SQLException se){
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   }catch(Exception e){
+		      //Handle errors for Class.forName
+		      e.printStackTrace();
+		   }finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            stmt.close();
+		      }catch(SQLException se2){
+		      }// nothing we can do
+		      /*try{
+		         if(connect!=null)
+		            connect.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }*///end finally try
+		   }//end try
+		   System.out.println("Goodbye!");
+		   return generatedKey;
+		}//end main
 }
 
 

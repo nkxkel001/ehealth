@@ -38,15 +38,10 @@ public class UserResource {
 	//return user id to be used in url to post data while logged in
 	@POST
 	@Consumes (MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public User addUser(User newUser){
-		
-		
-		
-		
-		
-		
-		return null;
+	@Produces(MediaType.TEXT_PLAIN)
+	public String addUser(User newUser){
+				
+		return userService.addUser(newUser);
 	}
 	
 	

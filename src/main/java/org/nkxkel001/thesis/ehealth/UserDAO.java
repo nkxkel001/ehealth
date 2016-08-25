@@ -115,6 +115,26 @@ public class UserDAO {
 			
 	}
 	
+	public int InsertUser(User user){
+		HashMap <String, String> setAtrributes = user.GetSetAttributes(user);
+		String column ="";
+		String values ="";
+		String sql = "INSERT INTO UserTable (";
+		for (Map.Entry<String, String> entry : setAtrributes.entrySet()) {
+			column += (","+entry.getKey());
+			values += (",'"+entry.getValue()+"'");
+		}
+		sql = sql + column.substring(1)+") VALUES ("+values.substring(1)+")";
+		System.out.println(sql);
+		
+		int res = databaseQuery.Insert(sql);
+		
+		
+		
+		return res;
+			
+	}
+	
 	
 	
 	

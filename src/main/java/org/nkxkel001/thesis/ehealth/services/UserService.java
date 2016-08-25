@@ -41,21 +41,35 @@ public class UserService {
 	
 	}
 	
-	public User createUser(User newuser){
+	public String addUser(User newuser){
 		//authenticate user
 		//check if user already exists
+		int id=0;
+		String res ="";
+		if(userExists(newuser)){
+			res ="User already exists";
+			//ask to update
+		}
+		else{
+			
+			//add user and return table userid
+		 id = userdao.InsertUser(newuser);
+		 res = "Created user with id - "+Integer.toString(id);
+		}
 		//allow login maybe or start receiving data
 		
-		return null;
+		return res;
 	}
 	
 	
 	public boolean userExists(User user){
-		String sql ="SELECT products.id FROM products WHERE products.id = ?";
+		if (userdao.GetUser(user.getUserName())!= null){
+			
+			return true;
+		}
 		
-		
-		
-		return true;
+		else
+			return false;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package org.nkxkel001.thesis.ehealth;
 
+import java.util.HashMap;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement // help do conversion to XML
@@ -125,6 +127,43 @@ public class User {
 
 	public void setEmergencyContact(String emergencyContact) {
 		this.emergencyContact = emergencyContact;
+	}
+	
+	
+	public HashMap<String, String> GetSetAttributes(User user){
+		HashMap <String,String> setAttributes = new HashMap <String,String>();
+		try{
+		if(!(user.userName.equals(null))){
+			setAttributes.put("UserName", user.userName);
+		}
+		if(!(user.lastName.equals(null))){
+			setAttributes.put("Surname", user.lastName);
+		}
+		if(!(user.firstName.equals(null))){
+			setAttributes.put("Name", user.firstName);
+		}
+		if(!(user.emergencyContact.equals(null))){
+			setAttributes.put("EmergencyContact", user.emergencyContact);
+		}
+		if(!(user.dateRegistered.equals(null))){
+			setAttributes.put("DateRegistered", user.dateRegistered);
+		}
+		if(user.doctorID!=0){
+			setAttributes.put("DoctorID", Integer.toString(user.doctorID));
+		}
+		/*if(user.id!=0){
+			setAttributes.put("UserID", Integer.toString(user.id));
+		}*/
+		}
+		catch (NullPointerException e)  {
+			
+		}
+						
+		return setAttributes;
+		
+		
+		
+		
 	}
 	
 	
