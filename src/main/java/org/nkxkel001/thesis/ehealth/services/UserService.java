@@ -41,6 +41,12 @@ public class UserService {
 	
 	}
 	
+	public User GetUser(String username){
+		
+		return userdao.GetUser(username);
+		
+	}
+	
 	public String addUser(User newuser){
 		//authenticate user
 		//check if user already exists
@@ -62,6 +68,26 @@ public class UserService {
 	}
 	
 	
+	public User UpdateUser(User user){
+			
+		return userdao.UpdateUser(user);
+		
+	}
+	
+	public String DeleteUser(String username){
+		String success="";
+		userdao.DeleteUser(username);
+		//confirm deletion
+		if(userExists(username)){
+			success = "Failed to delete User";
+		}
+		else{
+			success = "User Successfully deleted ";
+		}
+		return success;
+	}
+	
+	
 	public boolean userExists(User user){
 		if (userdao.GetUser(user.getUserName())!= null){
 			
@@ -71,6 +97,18 @@ public class UserService {
 		else
 			return false;
 	}
+	
+	public boolean userExists(String username){
+		if (userdao.GetUser(username)!= null){
+			
+			return true;
+		}
+		
+		else
+			return false;
+	}
+	
+	
 	
 	
 	

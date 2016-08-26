@@ -194,16 +194,56 @@ public class DatabaseQuery {
 		            stmt.close();
 		      }catch(SQLException se2){
 		      }// nothing we can do
-		      /*try{
-		         if(connect!=null)
-		            connect.close();
-		      }catch(SQLException se){
-		         se.printStackTrace();
-		      }*///end finally try
+		    
 		   }//end try
 		   System.out.println("Goodbye!");
 		   return generatedKey;
 		}//end main
+	 
+	 
+	 public void UpdateOrDelete (String sql) {
+		   
+		   Statement stmt = null;
+		   try{
+			   
+			   System.out.println("Creating statement for Update / Delete...");
+			   stmt = connect.createStatement();
+			   stmt.executeUpdate(sql); 
+			   System.out.println("Record Updated / Deleted");
+		      stmt.close();
+		      }catch(SQLException se){
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   }catch(Exception e){
+		      //Handle errors for Class.forName
+		      e.printStackTrace();
+		   }finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            stmt.close();
+		      }catch(SQLException se2){
+		      }// nothing we can do
+		    
+		   }//end try
+		   System.out.println("Goodbye!");
+		  
+		}//end main
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
 }
 
 

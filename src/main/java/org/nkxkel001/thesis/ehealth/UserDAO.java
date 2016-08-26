@@ -135,7 +135,30 @@ public class UserDAO {
 			
 	}
 	
+	public User UpdateUser(User user){
+		HashMap <String, String> setAtrributes = user.GetSetAttributes(user);
+		String values ="";
+		String sql = "UPDATE UserTable SET ";
+		for (Map.Entry<String, String> entry : setAtrributes.entrySet()) {
+			values += (","+entry.getKey()+"='"+entry.getValue()+"'");
+		}
+		sql = sql +values.substring(1)+ " WHERE UserName ='"+user.getUserName()+"'";
+		System.out.println(sql);
+		
+		databaseQuery.UpdateOrDelete(sql);
+		
+		
+		return GetUser(user.getUserName());
+		
+		
+	}
 	
+	public void DeleteUser(String username){
+		
+		String sql = "DELETE FROM UserTable WHERE UserName ='"+username+"'";
+	    databaseQuery.UpdateOrDelete(sql);
+			
+	}
 	
 	
 

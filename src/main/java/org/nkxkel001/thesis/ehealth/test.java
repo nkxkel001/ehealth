@@ -25,6 +25,8 @@ public class test {
 		//databaseQuery.SelectAll(sql);
 		
 		User user = userdao.GetUser("desire@gmail.com");
+		user.setFirstName("Desire");
+		userdao.UpdateUser(user);
 		//user.setUserName("desire@gmail.com");
 		//userdao.InsertUser(user);
 

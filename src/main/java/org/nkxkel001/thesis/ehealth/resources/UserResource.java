@@ -3,9 +3,12 @@ package org.nkxkel001.thesis.ehealth.resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -42,6 +45,33 @@ public class UserResource {
 	public String addUser(User newUser){
 				
 		return userService.addUser(newUser);
+	}
+	
+	@GET
+	@Path("/{username}")
+	@Produces (MediaType.APPLICATION_JSON)
+	public User getprofile(@PathParam("username")String username){
+		
+		return userService.GetUser(username);
+		
+		
+	}
+	
+	@PUT
+	@Path("/{username}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces (MediaType.APPLICATION_JSON)
+	public User Updateprofile(@PathParam("username")String username, User user){
+		user.setUserName(username);
+		return userService.UpdateUser(user);
+			
+	}
+	
+	@DELETE
+	@Path("/{username}")
+	public String DeleteUser(@PathParam("username")String username){
+			
+		return userService.DeleteUser(username);
 	}
 	
 	
