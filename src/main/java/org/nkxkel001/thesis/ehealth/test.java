@@ -16,17 +16,17 @@ public class test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//String sql ="SELECT * FROM UserTable WHERE Name = 'Keletsoyy'";
-		/*List<User> listusers =  userService.getAllUsers();
+		List<User> listusers =  userService.getAllUsers();
 			for( User a: listusers){
 			
 			System.out.println(a.getFirstName());
 			
-				}*/
+				}
 		//databaseQuery.SelectAll(sql);
 		
-		User user = userdao.GetUser("desire@gmail.com");
-		user.setFirstName("Desire");
-		userdao.UpdateUser(user);
+		//User user = userdao.GetUser("desire@gmail.com");
+		//user.setFirstName("Desire");
+		//userdao.UpdateUser(user);
 		//user.setUserName("desire@gmail.com");
 		//userdao.InsertUser(user);
 

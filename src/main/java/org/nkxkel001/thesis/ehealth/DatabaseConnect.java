@@ -13,10 +13,11 @@ public class DatabaseConnect {
 	
 	// JDBC driver name and database URL
 	public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	public static final String DB_URL = "jdbc:mysql://messengerdb.ckie6u2t8xbh.us-west-2.rds.amazonaws.com:3306/ebdb";
+	//public static final String DB_URL = "jdbc:mysql://messengerdb.ckie6u2t8xbh.us-west-2.rds.amazonaws.com:3306/ebdb";
+	public static final String DB_URL = "jdbc:mysql://localhost/ehealth";
 	
 // Database credentials
-   public static final String USER = "messengerDB";
+   public static final String USER = "root";
    public static final String PASS = "061193kayy";
    
    static Connection conn = null;

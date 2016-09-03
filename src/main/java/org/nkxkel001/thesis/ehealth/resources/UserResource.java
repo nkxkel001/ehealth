@@ -28,7 +28,7 @@ public class UserResource {
 	@Produces (MediaType.APPLICATION_JSON)
 	//only admin
 	public List<User> getUsers(){
-		String name = "blabla";
+		//String name = "blabla";
 		List<User> listusers =  userService.getAllUsers();
 		
 		return listusers;
