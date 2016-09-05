@@ -14,7 +14,8 @@ public class DataService {
 	public DataService (){
 		
 		datadao = new DataDAO();
-		healthcheck = new HealthCheck ();
+		UserService userService = new UserService();
+		//healthcheck = new HealthCheck ();
 		
 	}
 	
@@ -29,10 +30,17 @@ public class DataService {
 		// TODO Auto-generated method stub
 		//check data first and set health status then upload
 		//return data status
+		String res="";
+		healthcheck = new HealthCheck (newData);
+		String status = healthcheck.CheckStatus();
+		newData.setHealthStatus(status);
+		//sendAlert(newData)
+		//save data
+		int id = datadao.InsertData(newData);
 		
 		
 		
-		return null;
+		return res;
 	}
 
 }
