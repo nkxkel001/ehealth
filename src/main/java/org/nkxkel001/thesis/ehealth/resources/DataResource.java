@@ -39,8 +39,8 @@ public class DataResource {
 	@Path("/{username}")
 	@Produces (MediaType.APPLICATION_JSON)
 	public List<Data>getUserData(@PathParam("username")String username){
-		
-		return null;
+		List<Data> userData =  dataService.getUserData(username);
+		return  userData;
 	}
 	
 	@POST

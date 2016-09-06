@@ -2,8 +2,11 @@ package org.nkxkel001.thesis.ehealth;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.nkxkel001.thesis.ehealth.services.UserService;
 @XmlRootElement // help do conversion to XML
 public class Data {
 
@@ -18,15 +21,20 @@ public class Data {
 	private String username;
 	private String device;
 	private String dateUploaded;
+	private String valuesString;
 	
 	
-	public Data(){}
+	public Data(){
+		this.valuesString= Arrays.toString(this.values);
+	}
 	
 	public Data( String dateMonitored, int[] values,String username, String device) {
 		this.dateMonitored = new Date().toString();
 		this.values = values;
 		this.username = username;
 		this.device = device;
+		this.valuesString= Arrays.toString(values);
+		
 		}
 	
 	
@@ -41,6 +49,8 @@ public class Data {
 		this.username = username;
 		this.device = device;
 		this.dateUploaded = dateUploaded;
+		this.valuesString= Arrays.toString(values);
+		
 	}
 	
 	
@@ -67,7 +77,7 @@ public class Data {
 	}
 	
 	public String getStringValues(){
-		return Arrays.toString(values);
+		return valuesString;
 		
 	}
 	
@@ -119,9 +129,16 @@ public class Data {
 		this.values = values;
 	}
 	
+	public void setValues() {
+		// TODO Auto-generated method stub
+		this.valuesString= Arrays.toString(this.values);
+		
+	}
+	
 	public void setValues(String values){
 		String strip = values.substring(1, values.indexOf("]"));
-		String[] vals = strip.split(","); 
+		String strip2 = strip.replaceAll("\\s","");
+		String[] vals = strip2.split(","); 
 	    int[] ints = new int[vals.length];
 	    for (int i=0; i < vals.length; i++) {
 	    	try{
@@ -133,6 +150,7 @@ public class Data {
 	    }
 	  
 	    this.values = ints;
+	    this.valuesString= values;
 		
 	}
 
@@ -167,9 +185,44 @@ public class Data {
 
 
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public HashMap<String, String> GetSetAttributes(Data data){
+		HashMap <String,String> setAttributes = new HashMap <String,String>();
+		try{
+		if(!(data.username.equals(null))){
+			UserService userService = new UserService();
+			int userID = userService.GetUserID(username);
+			setAttributes.put("UserID", Integer.toString(userID));
+		}	
+		if(!(data.dateMonitored.equals(null))){
+			setAttributes.put("DateMonitored", data.dateMonitored);
+		}
+		
+		if(!(data.device.equals(null))){
+			setAttributes.put("Device", data.device);
+		}
+		if(!(data.healthStatus.equals(null))){
+			setAttributes.put("State", data.healthStatus);
+		}
+		if(!(data.values.equals(null))){
+			setAttributes.put("DataValues", data.valuesString);
+		}
+		if(!(data.dateUploaded.equals(null))){
+			setAttributes.put("DateUploaded", data.dateUploaded);
+		}
+		
+		}
+		catch (NullPointerException e)  {
+			
+		}
+						
+		return setAttributes;
+		
+		
+		
+		
 
 	}
+
+	
 
 }

@@ -160,6 +160,51 @@ public class DatabaseQuery {
 		}//end main
 
 
+	 public int SelectID(String sql){
+		 int ID=0;
+		 Statement stmt = null;
+		  try{
+		      System.out.println("Creating statement for SelectID...");
+		      stmt = connect.createStatement();
+		      ResultSet rs = stmt.executeQuery(sql);
+		      //STEP 5: Extract data from result set
+		      while(rs.next()){
+		         //Retrieve by column name
+		    	  ID = rs.getInt(1);
+		        		        		         
+		      }
+		       
+		      //STEP 6: Clean-up environment
+		      rs.close();
+		     // stmt.close();
+		     // connect.close();
+		      //return proflist;
+		   }catch(SQLException se){
+		      //Handle errors for JDBC
+		      se.printStackTrace();
+		   }catch(Exception e){
+		      //Handle errors for Class.forName
+		      e.printStackTrace();
+		   }finally{
+		      //finally block used to close resources
+		      try{
+		         if(stmt!=null)
+		            stmt.close();
+		      }catch(SQLException se2){
+		      }// nothing we can do
+		      /*try{
+		         if(connect!=null)
+		            connect.close();
+		      }catch(SQLException se){
+		         se.printStackTrace();
+		      }*///end finally try
+		   }//end try
+		   System.out.println("Goodbye!");
+					 
+		 return ID;
+		 
+	  }
+	 
 	 public int Insert (String sql) {
 		   
 		   Statement stmt = null;

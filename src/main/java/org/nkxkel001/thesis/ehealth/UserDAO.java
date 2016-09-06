@@ -161,5 +161,15 @@ public class UserDAO {
 	}
 	
 	
+	public int GetUserID(String username){
+		
+		int ID=0;
+		String sql ="SELECT * FROM UserTable WHERE UserName = '"+username +"'";
+		ID = databaseQuery.SelectID(sql);
+		
+		return ID;
+	}
+	
+	
 
 }

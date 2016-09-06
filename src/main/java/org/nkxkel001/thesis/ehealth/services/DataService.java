@@ -19,12 +19,20 @@ public class DataService {
 		
 	}
 	
+	//testing purposes..comment out for final
 	public List<Data> getAllData() {
 		// TODO Auto-generated method stub
 		
-		
-		return null;
+		return datadao.GetAllData();
 	}
+	
+	public List<Data> getUserData(String username) {
+		// TODO Auto-generated method stub
+		
+		return datadao.GetUserData(username);
+	}
+	
+	
 
 	public String addData(Data newData) {
 		// TODO Auto-generated method stub
@@ -34,8 +42,10 @@ public class DataService {
 		healthcheck = new HealthCheck (newData);
 		String status = healthcheck.CheckStatus();
 		newData.setHealthStatus(status);
+		newData.setValues();
 		//sendAlert(newData)
 		//save data
+		@SuppressWarnings("unused")
 		int id = datadao.InsertData(newData);
 		
 		

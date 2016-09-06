@@ -47,6 +47,11 @@ public class UserService {
 		
 	}
 	
+	public int GetUserID(String username){
+		
+		return userdao.GetUserID(username);
+	}
+	
 	public String addUser(User newuser){
 		//authenticate user
 		//check if user already exists
