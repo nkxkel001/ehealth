@@ -44,7 +44,7 @@ public class DataResource {
 	}
 	
 	@POST
-	@Path("/{username}")
+	//@Path("/{username}")
 	@Consumes (MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	//upload data. called from app.. app username same as api username

@@ -47,8 +47,8 @@ public class DataService {
 		//save data
 		@SuppressWarnings("unused")
 		int id = datadao.InsertData(newData);
-		
-		
+	
+		res = "Uploaded data. Health check result = "+status;
 		
 		return res;
 	}
