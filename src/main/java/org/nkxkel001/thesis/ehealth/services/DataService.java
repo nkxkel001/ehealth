@@ -2,6 +2,7 @@ package org.nkxkel001.thesis.ehealth.services;
 
 import java.util.List;
 
+import org.nkxkel001.thesis.ehealth.Alert;
 import org.nkxkel001.thesis.ehealth.Data;
 import org.nkxkel001.thesis.ehealth.DataDAO;
 import org.nkxkel001.thesis.ehealth.HealthCheck;
@@ -10,6 +11,7 @@ public class DataService {
 
 	private DataDAO datadao;
 	private HealthCheck healthcheck;
+	private Alert alert;
 	
 	public DataService (){
 		
@@ -43,13 +45,23 @@ public class DataService {
 		String status = healthcheck.CheckStatus();
 		newData.setHealthStatus(status);
 		newData.setValues();
-		//sendAlert(newData)
+		String s = sendAlert(newData);
 		//save data
 		@SuppressWarnings("unused")
 		int id = datadao.InsertData(newData);
 	
-		res = "Uploaded data. Health check result = "+status;
+		res = "Uploaded data. Health check result = "+status+" "+s;
 		
+		return res;
+	}
+	
+	public String sendAlert(Data data){
+		String res ="";
+		if(data.getHealthStatus().equalsIgnoreCase("abnormal")){
+			alert = new Alert(data);
+			res = alert.sendOutAlert();
+		}
+				
 		return res;
 	}
 
